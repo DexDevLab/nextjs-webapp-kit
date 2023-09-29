@@ -1,0 +1,50 @@
+{
+  "name": "nextjs-webapp-kit",
+  "description": "Kit básico de uma aplicação web ajustável e configurável para atender preferências específicas",
+  "version": "v0.0.1-230929",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "caniuse": "npm update --save caniuse-lite browserslist",
+    "clean": "yarn autoclean --force",
+    "git:clear": "bash cleargitcache.sh"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "dependencies": {
+    "@chakra-ui/icons": "^2.1.0",
+    "@chakra-ui/next-js": "^2.1.4",
+    "@chakra-ui/react": "^2.7.1",
+    "@emotion/cache": "^11.11.0",
+    "@emotion/css": "^11.11.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/marcellus-sc": "^5.0.5",
+    "@fontsource/titillium-web": "^5.0.5",
+    "@popperjs/core": "^2.11.8",
+    "eslint": "8.44.0",
+    "eslint-config-next": "13.4.8",
+    "framer-motion": "^10.12.18",
+    "lodash": "^4.17.21",
+    "masks-br": "^1.0.1",
+    "next": "13.4.0",
+    "next-auth": "^4.22.1",
+    "next-themes": "^0.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-email-mask": "^1.0.1",
+    "react-hook-form": "^7.45.1",
+    "react-hook-mask": "^1.1.16",
+    "react-icons": "^4.10.1",
+    "react-spinners": "^0.13.8",
+    "react-toastify": "^9.1.3"
+  }
+}
