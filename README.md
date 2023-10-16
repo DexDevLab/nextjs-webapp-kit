@@ -160,6 +160,17 @@ No diretório `utils`, configure o arquivo `webappconfig.js` conforme desejar pa
 
 </a>
 
+### v0.0.2-231016
+
+- Criação de componente de ícone customizado para adaptação aos Componentes nativos do ChakraUI
+- Criação de componente e handlers de animação de sidebar e barra para mobile
+- Ajuste e componentização de itens de menu para sidebar e navbar
+- Ajuste no componente de hyperlink
+- Criação de middleware para manipulação de headers CORS em aplicações backend
+- Criação do serviço de API para pré-configurar rotas API
+- Remoção da API de exemplo
+- Criação da barra de busca e API de exemplo para buscas, com controller
+
 ### v0.0.1-230929
 
 Commit inicial:

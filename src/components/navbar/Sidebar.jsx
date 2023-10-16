@@ -1,6 +1,5 @@
 import useDimensions from "@/components/hooks/useDimensions";
 import BrandSVG from "@/components/images/BrandSVG";
-import ColorModeSwitch from "@/components/switches/ColorModeSwitch";
 import {
   Box,
   Button,
@@ -16,16 +15,18 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
-import { BsBoxArrowRight } from "react-icons/bs";
-import NavigationOptions from "../navbar/NavigationOptions";
+import { RiMenuUnfoldLine } from "react-icons/ri";
+import Searchbar from "../navigation/Searchbar";
+import NavigationOptions from "./NavigationOptions";
+import ProfileMenuOptions from "./ProfileMenuOptions";
 
 export default function Sidebar({ config, session, children, ...props }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { height, width } = useDimensions();
 
   const bgColor = useColorModeValue(
-    "rgba(255,255, 255, 0.6)",
-    "rgba(45, 55, 72, 0.7)"
+    "rgba(255,255, 255, 0.75)",
+    "rgba(45, 55, 72, 0.85)"
   );
 
   const hover = useColorModeValue(
@@ -88,17 +89,12 @@ export default function Sidebar({ config, session, children, ...props }) {
                   cursor: "pointer",
                 }}
               >
-                <Icon color={hover} boxSize={"8"} as={BsBoxArrowRight}></Icon>
+                <Icon color={hover} boxSize={"8"} as={RiMenuUnfoldLine} />
               </Flex>
             </Flex>
           )}
         </AnimatePresence>
-
-        <Box>
-          {/* <Button onClick={onClose}>Open</Button> */}
-          <ColorModeSwitch></ColorModeSwitch>
-          {children}
-        </Box>
+        <Box>{children}</Box>
       </Flex>
 
       <Drawer
@@ -117,38 +113,72 @@ export default function Sidebar({ config, session, children, ...props }) {
           backgroundColor={bgColor}
           boxShadow="lg"
           backdropFilter="saturate(150%) blur(5px)"
+          minW={"60"}
+          maxW={"fit-content"}
         >
-          <DrawerHeader>
+          <DrawerHeader p={0}>
             <Flex
-              //gap={"2"}
+              gap={"2"}
               flexDirection={"row"}
               justifyContent={"center"}
               height={"fit-content"}
               m={"auto"}
-              p={5}
+              p={6}
             >
               <BrandSVG width={"32"} alignSelf={"center"} />
             </Flex>
           </DrawerHeader>
-          <DrawerBody>
+          <DrawerBody p={0}>
             <Flex
-              //gap={"2"}
-              flexDirection={"row"}
-              justifyContent={"center"}
-              height={"fit-content"}
-              m={"auto"}
-              p={5}
-              borderColor={hover}
-              borderWidth={"thin"}
+              flexDirection={"column"}
+              justifyContent={"space-around"}
+              m={0}
+              p={0}
             >
-              <NavigationOptions config={config} navigation={'sidebar'} />
+              <Searchbar isModal ml={1.5} config={config} />
+              <NavigationOptions config={config} navigation={"sidebar"} />
             </Flex>
           </DrawerBody>
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme="blue">Save</Button>
+          {/* <Divider borderColor={hover} /> */}
+          <DrawerFooter height={config.profile.enableProfile ? "20" : 10} p={0}>
+            {config.profile.enableProfile ? (
+              <ProfileMenuOptions
+                sidebar
+                profileOptions={{ session, ...config }}
+              />
+            ) : (
+              config.auth.hasAuth && (
+                <Flex width={"100%"} justifyContent={"center"}>
+                  <Button
+                    _focus={{
+                      outline: "none",
+                      borderColor: "inherit",
+                      boxShadow: "none",
+                    }}
+                    _hover={{
+                      textDecoration: "none",
+                      boxShadow: "none",
+                      color: hover,
+                    }}
+                    fontWeight={"bold"}
+                    px={1}
+                    pb={1}
+                    fontSize={"md"}
+                    tabIndex="-1"
+                    colorScheme=""
+                    variant="link"
+                    size={"sm"}
+                    onClick={() => {
+                      session?.user.name
+                        ? signOut()
+                        : router.push("/auth/signin");
+                    }}
+                  >
+                    {session?.user.name ? "Sair" : "Login"}
+                  </Button>
+                </Flex>
+              )
+            )}
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

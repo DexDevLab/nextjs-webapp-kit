@@ -1,7 +1,7 @@
 {
   "name": "nextjs-webapp-kit",
   "description": "Kit básico de uma aplicação web ajustável e configurável para atender preferências específicas",
-  "version": "v0.0.1-230929",
+  "version": "v0.0.2-231016",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -29,7 +29,10 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource/marcellus-sc": "^5.0.5",
     "@fontsource/titillium-web": "^5.0.5",
+    "@n8tb1t/use-scroll-position": "^2.0.3",
     "@popperjs/core": "^2.11.8",
+    "axios": "^1.5.1",
+    "chakra-ui-search": "^1.1.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
     "framer-motion": "^10.12.18",

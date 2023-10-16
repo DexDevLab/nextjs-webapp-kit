@@ -20,6 +20,13 @@ export const config = {
   auth: {
     // SE AUTENTICAÇÃO NO NEXT AUTH SERÁ USADA
     hasAuth: true,
+    // LISTA DE ROTAS API ONDE O USUÁRIO DEVE AUTENTICAR ANTES
+    // DE ACESSAR (DIRETAMENTE OU VIA AXIOS). NÃO AFETA PÁGINAS CLIENT-SIDE!
+    // PODE SER UTILIZADA UMA ARRAY DE STRINGS.
+    // EX.: authenticatedRoutes: ['search', 'user']
+    // UTILIZAR WILDCARD (*) AFETA AS ROTAS SUBSEQUENTES.
+    // EX.: authenticatedRoutes: ["api/*"] (DESATIVA A ROTA API E TODAS OS SUBDIRETÓRIOS)
+    authenticatedRoutes: [""],
   },
   // AJUSTES DE COMPORTAMENTO DE PERFIL DE USUÁRIO
   profile: {

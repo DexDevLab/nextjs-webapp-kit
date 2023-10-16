@@ -3,10 +3,10 @@ import { Link } from "@chakra-ui/next-js";
 import { useColorModeValue } from "@chakra-ui/react";
 import NextLink from "next/link";
 
-export default function Hyperlink({ children, href = "", onClick, ...props }) {
+export default function Hyperlink({ children, href = "", onClick, sidebar, ...props }) {
   const { theming } = config;
   
-  const fontColor = useColorModeValue(
+  const linkColor = useColorModeValue(
     theming.lightModeLinkColor,
     theming.darkModeLinkColor
   );
@@ -16,15 +16,20 @@ export default function Hyperlink({ children, href = "", onClick, ...props }) {
     theming.darkModeHoverColor
   );
 
+  const hoverColorInverted= useColorModeValue(
+    theming.darkModeFontColor,
+    theming.lightModeFontColor
+  )
+
   return (
     <Link
       as={NextLink}
       href={onClick ? "#" : href}
-      color={fontColor}
+      color={linkColor}
       _hover={{
         textDecoration: "none",
-        color: hoverColor,
-        fontWeight: "bold",
+        color: sidebar ? hoverColorInverted  : hoverColor,
+        fontWeight: !sidebar && "bold",
       }}
       onClick={onClick}
       {...props}

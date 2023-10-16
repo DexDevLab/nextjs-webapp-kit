@@ -1,9 +1,9 @@
 import React from "react";
 import { useCustomBreakpointProvider } from "../hooks/useCustomBreakpointProvider";
-import DesktopNavbar from "../navigation/navbar/DesktopNavbar";
-import MobileNavbar from "../navigation/navbar/MobileNavbar";
-import TabletNavbar from "../navigation/navbar/TabletNavbar";
-import Sidebar from "../navigation/sidebar/Sidebar";
+import DesktopNavbar from "../navbar/DesktopNavbar";
+import MobileNavbar from "../navbar/MobileNavbar";
+import Sidebar from "../navbar/Sidebar";
+import TabletNavbar from "../navbar/TabletNavbar";
 
 export default function NavigationLayout({
   config,
@@ -13,36 +13,26 @@ export default function NavigationLayout({
 }) {
   const breakpoint = useCustomBreakpointProvider();
 
-  const LoadedNavbar = () => {
-    return (
-      <>
-        {breakpoint == "lg" ? (
-          <DesktopNavbar session={session} config={config}>
-            {React.cloneElement(children, { config, session, ...props })}
-          </DesktopNavbar>
-        ) : breakpoint == "md" ? (
-          <TabletNavbar session={session} config={config}>
-            {React.cloneElement(children, { config, session, ...props })}
-          </TabletNavbar>
-        ) : (
-          breakpoint == "sm" && (
-            <MobileNavbar session={session} config={config}>
-             {React.cloneElement(children, { config, session, ...props })}
-            </MobileNavbar>
-          )
-        )}
-      </>
-    );
-  };
-
   return (
     <>
       {config.ux.menu.useSidebar ? (
         <Sidebar session={session} config={config}>
           {React.cloneElement(children, { config, session, ...props })}
         </Sidebar>
+      ) : breakpoint == "lg" ? (
+        <DesktopNavbar session={session} config={config}>
+          {React.cloneElement(children, { config, session, ...props })}
+        </DesktopNavbar>
+      ) : breakpoint == "md" ? (
+        <TabletNavbar session={session} config={config}>
+          {React.cloneElement(children, { config, session, ...props })}
+        </TabletNavbar>
       ) : (
-        <>{LoadedNavbar()}</>
+        breakpoint == "sm" && (
+          <MobileNavbar session={session} config={config}>
+            {React.cloneElement(children, { config, session, ...props })}
+          </MobileNavbar>
+        )
       )}
     </>
   );

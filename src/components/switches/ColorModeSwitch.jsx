@@ -73,7 +73,6 @@ export default function ColorModeSwitch({ small, ...props }) {
       whileHover={{
         scale: 1.1,
       }}
-      layout
       onClick={() => performColorSwitching()}
       onHoverStart={() => setIsHover(true)}
       onHoverEnd={() => setIsHover(false)}
@@ -90,7 +89,7 @@ export default function ColorModeSwitch({ small, ...props }) {
       }}
       bg={useColorModeValue("brand.900", "yellow.400")}
       shadow="2xl"
-      my={"auto"} 
+      my={"auto"}
       {...props}
     >
       <Flex

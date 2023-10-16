@@ -10,19 +10,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import BrandSVG from "../../images/BrandSVG";
-import ColorModeSwitch from "../../switches/ColorModeSwitch";
-import HamburgerIcon from "./HamburgerIcon";
+import BrandSVG from "../images/BrandSVG";
+import ColorModeSwitch from "../switches/ColorModeSwitch";
+import HamburgerIcon from "../icons/HamburgerIcon";
 import NavigationOptions from "./NavigationOptions";
 import ProfileMenuOptions from "./ProfileMenuOptions";
+import Searchbar from "../navigation/Searchbar";
 
 export default function MobileNavbar({ config, session, children, ...props }) {
   const [isOpen, setOpen] = useState(false);
   const router = useRouter();
 
   const bgColor1 = useColorModeValue(
-    "rgba(255,255, 255, 0.6)",
-    "rgba(45, 55, 72, 0.6)"
+    "rgba(255,255, 255, 0.75)",
+    "rgba(45, 55, 72, 0.85)"
   );
 
   const bgColor2 = useColorModeValue(
@@ -157,6 +158,7 @@ export default function MobileNavbar({ config, session, children, ...props }) {
           my={"auto"}
           gap={4}
         >
+           <Searchbar my={"auto"} config={config} />
           {config.profile.enableProfile ? (
             <ProfileMenuOptions profileOptions={{ session, ...config }} />
           ) : (
@@ -242,7 +244,7 @@ export default function MobileNavbar({ config, session, children, ...props }) {
                 </Flex>
                 <Spacer mr={10} />
               </Flex>
-              <NavigationOptions config={config} navigation={'mobile'} />
+              <NavigationOptions config={config} navigation={"mobile"} />
             </Flex>
           </Flex>
         )}

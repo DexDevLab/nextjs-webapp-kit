@@ -7,8 +7,12 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { signOut } from "next-auth/react";
-import BrandSVG from "../../images/BrandSVG";
-import ColorModeSwitch from "../../switches/ColorModeSwitch";
+import { useEffect, useState } from "react";
+import useDimensions from "../hooks/useDimensions";
+import BrandSVG from "../images/BrandSVG";
+// import Searchbar from "../navigation/Searchbar";
+import Searchbar from "../navigation/Searchbar";
+import ColorModeSwitch from "../switches/ColorModeSwitch";
 import NavigationOptions from "./NavigationOptions";
 import ProfileMenuOptions from "./ProfileMenuOptions";
 
@@ -17,6 +21,17 @@ export default function DesktopNavbar({ config, session, children, ...props }) {
     config.theming.lightModeHoverColor,
     config.theming.darkModeHoverColor
   );
+
+  const { height, width } = useDimensions();
+  const [isReduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    if (width < 1200) {
+      setReduced(true);
+    } else {
+      setReduced(false);
+    }
+  }, [isReduced, width]);
 
   return (
     <>
@@ -31,8 +46,8 @@ export default function DesktopNavbar({ config, session, children, ...props }) {
         width={"100%"}
         boxShadow="lg"
         backgroundColor={useColorModeValue(
-          "rgba(255,255, 255, 0.6)",
-          "rgba(45, 55, 72, 0.6)"
+          "rgba(255,255, 255, 0.75)",
+          "rgba(45, 55, 72, 0.85)"
         )}
         backdropFilter="saturate(180%) blur(15px)"
         flexDirection={"row"}
@@ -45,7 +60,7 @@ export default function DesktopNavbar({ config, session, children, ...props }) {
           justifyContent={"space-between"}
           height={"fit-content"}
           my="auto"
-          mr={"16"}
+          mr={"md"}
         >
           <BrandSVG width={"24"} alignSelf={"flex-start"} />
           <Spacer />
@@ -55,14 +70,28 @@ export default function DesktopNavbar({ config, session, children, ...props }) {
             }}
             as={"h6"}
             p="0"
+            px={2}
+            my={"auto"}
             size={"sm"}
+            textAlign={"center"}
+            lineHeight={"4"}
           >
             {config.meta.title}
           </Heading>
         </Flex>
-        <NavigationOptions config={config} />
-        <Spacer />
-        <Flex height={"fit-content"} my="auto">
+        <Flex
+          flexDirection={"row"}
+          justifyContent={"center"}
+          height={"fit-content"}
+          //mr={isReduced && "0"}
+          //width={isReduced && "auto"}
+          my={"auto"}
+        >
+          <NavigationOptions config={config} />
+        </Flex>
+        {/* <Spacer /> */}
+        <Flex gap={4} ml={"auto"} height={"fit-content"} my="auto">
+          <Searchbar config={config} />
           <ColorModeSwitch small />
         </Flex>
         {config.profile.enableProfile ? (
