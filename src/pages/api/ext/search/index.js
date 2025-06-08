@@ -8,12 +8,14 @@ const handler = async (req, res) => {
       case "GET":
         const { search } = req.query;
         const query = await getSearch(search);
-        return res.status(200).json(query);
+        return res.json({ status: 200, data: query });
       default:
-        return exceptionHandler(null, res);
+        const error = exceptionHandler();
+        return res.json({ status: error.code, data: error.message });
     }
   } catch (e) {
-    return exceptionHandler(e, res);
+    const error = exceptionHandler(e);
+    return res.json({ status: error.code, data: error });
   }
 };
 

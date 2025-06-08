@@ -13,7 +13,7 @@
 
 <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next-black?logo=next.js&logoColor=white" height="22" alt="NextJS"/></a> <a href="https://chakra-ui.com"><img src="https://img.shields.io/badge/chakra-%234ED1C5.svg?logo=chakraui&logoColor=white" height="22" alt="ChakraUI"/></a> <a href="https://www.prisma.io"><img src="https://img.shields.io/badge/Prisma-3982CE?logo=Prisma&logoColor=white" height="22" alt="PrismaIO"/></a> <a href="https://www.sqlite.org/index.html"><img src="https://img.shields.io/badge/SQLite-%2307405e.svg?logo=sqlite&logoColor=white" height="22" alt="SQLite"/></a> <a href="https://www.microsoft.com/pt-br/sql-server/sql-server-2019"><img src="https://img.shields.io/badge/Microsoft%20SQL%20Sever-CC2927?logo=microsoft%20sql%20server&logoColor=white" height="22" alt="MSSQLServer"/></a>
 
-<a href=""><img src="https://img.shields.io/badge/maintenance-actively--developed-brightgreen.svg" height="22" alt="Maintenance-actively-developed"/></a> <a href=""><img src="https://img.shields.io/github/last-commit/dexdevlab/nextjs-webapp-kit" height="22" alt="LastCommit"></a> <a href=""><img src="https://snyk.io/test/github/dexdevlab/nextjs-webapp-kit/badge.svg" height="22" alt="Snyk"/></a>
+<a href=""><img src="https://img.shields.io/badge/maintenance-deprecated-red.svg" height="22" alt="Maintenance-deprecated"/></a> <a href=""><img src="https://img.shields.io/github/last-commit/dexdevlab/nextjs-webapp-kit" height="22" alt="LastCommit"></a> <a href=""><img src="https://snyk.io/test/github/dexdevlab/nextjs-webapp-kit/badge.svg" height="22" alt="Snyk"/></a>
 
 <a href=""><img src="https://img.shields.io/github/repo-size/dexdevlab/nextjs-webapp-kit" height="22" alt="RepoSize"/></a> <a href=""><img src="https://img.shields.io/github/languages/code-size/dexdevlab/nextjs-webapp-kit" height="22" alt="CodeSize"/></a> <a href=""><img src="https://img.shields.io/github/contributors/dexdevlab/nextjs-webapp-kit" height="22" alt="Contributors"></a>
 
@@ -159,6 +159,10 @@ No diretório `utils`, configure o arquivo `webappconfig.js` conforme desejar pa
 ## Notas de versão
 
 </a>
+
+### v0.0.3-250608
+
+- Atualização do conteúdo. O projeto estará suspenso por tempo indeterminado.
 
 ### v0.0.2-231016
 

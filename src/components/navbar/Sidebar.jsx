@@ -135,7 +135,7 @@ export default function Sidebar({ config, session, children, ...props }) {
               m={0}
               p={0}
             >
-              <Searchbar isModal ml={1.5} config={config} />
+              {config.ux.useSearchBar && <Searchbar isModal config={config} />}
               <NavigationOptions config={config} navigation={"sidebar"} />
             </Flex>
           </DrawerBody>

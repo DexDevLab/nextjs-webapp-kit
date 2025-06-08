@@ -15,6 +15,7 @@ import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { useEffect, useState } from "react";
 import useDimensions from "../hooks/useDimensions";
 import ChakraMenuIcon from "../icons/ChakraMenuIcon";
+import { customToastEmitter } from "../toasts/customToastEmitter";
 import SearchbarInputBox from "./SearchbarInputBox";
 import SearchbarResultBox from "./SearchbarResultBox";
 
@@ -53,34 +54,49 @@ export default function Searchbar({ config, isModal, ...props }) {
     setValue("");
   };
 
-  // EXEMPLO DE FUNÇÃO VALUE CHANGE
-  // ALTERAR O FUNCIONAMENTO PARA A REQUISIÇÃO CONFORME NECESSÁRIO
+  // EXEMPLO DE FUNÃ‡ÃƒO VALUE CHANGE
+  // ALTERAR O FUNCIONAMENTO PARA A REQUISIÃ‡ÃƒO CONFORME NECESSÃRIO
   const onValueChange = async (val) => {
     setValue(val);
     if (val.length > 0) {
       setLoading(true);
       // CONSULTA AO BACKEND PARA GERAR AS RESPOSTAS
       const searchRes = await axiosAPI
-        .get("/api/search", {
+        .get("/api/ext/search", {
           params: {
             search: val,
           },
         })
-        .then((data) => {
+        .then(({ data }) => {
           setLoading(false);
-          return data;
+          if (data.status == 200) {
+            return data.data;
+          } else {
+            const toast = {};
+            toast.title = "Falha durante a busca";
+            (toast.status = "error"),
+              (toast.description =
+                "Ocorreu um erro na API durante a busca dos dados. Aguarde alguns instantes e tente novamente.");
+            toast.autoClose = 4000;
+            toast.closeButton = true;
+            toast.transition = "fadeInForward";
+            toast.code = data.status;
+            setTimeout(() => {
+              customToastEmitter(toast);
+            }, 500);
+          }
         });
-      if (searchRes.data.length > 0) {
-        setSearchResults(searchRes.data);
+      if (searchRes.length > 0) {
+        setSearchResults(searchRes);
       }
-      setResultboxOpen(searchRes.data.length > 0);
+      setResultboxOpen(searchRes.length > 0);
     } else {
       setResultboxOpen(false);
     }
   };
 
-  // EXEMPLO DE FUNÇÃO RESULT SELECT.
-  // ALTERAR O FUNCIONAMENTO SUBSTITUINDO A FUNÇÃO CONFORME NECESSÁRIO
+  // EXEMPLO DE FUNÃ‡ÃƒO RESULT SELECT.
+  // ALTERAR O FUNCIONAMENTO SUBSTITUINDO A FUNÃ‡ÃƒO CONFORME NECESSÃRIO
   const onResultSelect = (val) => {
     const name = val.name.toString().replaceAll(" ", "+");
     window.open("https://google.com/search?q=" + name, "_blank");

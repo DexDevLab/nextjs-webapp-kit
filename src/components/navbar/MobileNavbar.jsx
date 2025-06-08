@@ -158,7 +158,7 @@ export default function MobileNavbar({ config, session, children, ...props }) {
           my={"auto"}
           gap={4}
         >
-           <Searchbar my={"auto"} config={config} />
+           {config.ux.useSearchBar && <Searchbar my={"auto"} config={config} />}
           {config.profile.enableProfile ? (
             <ProfileMenuOptions profileOptions={{ session, ...config }} />
           ) : (

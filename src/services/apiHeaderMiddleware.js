@@ -1,5 +1,6 @@
 import { config } from "@/utils/webappconfig";
 import _ from "lodash";
+import { getToken } from "next-auth/jwt";
 
 /**
  * Utilitário para dar override sobre erro do CORS com direcionamentos HTTPS.
@@ -28,20 +29,26 @@ export const apiHeaderMiddleware = (fn) => async (req, res) => {
   }
 
   const route = req.headers["x-invoke-path"];
+  
+  const token = await getToken({
+    req: req,
+    secret: process.env.SECRET,
+  });
+  
   const authRoutes = config.auth.authenticatedRoutes;
 
   const found = () => {
     return authRoutes.find((item) => {
       if (item.toString().includes("/*")) {
-        const strItem = item.substring(0, item.indexOf("*"));
+        const strItem = item.substring(0, item.indexOf("/*"));
         const strRoute = route.substring(0, route.lastIndexOf("/") + 1);
-        return strRoute.localeCompare(`/${strItem}`) === 0;
+        return item.toString().includes("api/") ? route.localeCompare(`/${strItem}`) === 0 : strRoute.localeCompare(`/${strItem}`);
       }
-      return route.localeCompare(`/${item}`) === 0;
+      return item.toString().includes("api/") ? route.localeCompare(`/${item}`) === 0 : route.localeCompare(`/api/${item}`) === 0;
     });
   };
 
-  if (!_.isUndefined(found())) {
+  if (!_.isUndefined(found()) && !token) {
     //res.status(403).end();
     //return;
     return res.status(302).redirect("/auth/signin");

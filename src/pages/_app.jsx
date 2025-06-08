@@ -21,7 +21,7 @@ export default function App({
         <CustomToastContainer />
         <SessionProvider session={session}>
           {Component.auth ? (
-            <Auth>
+            <AuthProvider validator={config.auth.hasAuth}>
               <DefaultLayout
                 lockScroll={lockScroll}
                 pageTitle={pageTitle}
@@ -32,7 +32,20 @@ export default function App({
                   <Component {...pageProps} />
                 </NavigationLayout>
               </DefaultLayout>
-            </Auth>
+            </AuthProvider>
+          ) : Component.guest ? (
+            <AuthProvider validator={!config.profile.allowGuest}>
+              <DefaultLayout
+                lockScroll={lockScroll}
+                pageTitle={pageTitle}
+                config={config}
+                session={session}
+              >
+                <NavigationLayout>
+                  <Component {...pageProps} />
+                </NavigationLayout>
+              </DefaultLayout>
+            </AuthProvider>
           ) : (
             <DefaultLayout
               lockScroll={lockScroll}
@@ -50,14 +63,12 @@ export default function App({
   );
 }
 
-function Auth({ children, ...props }) {
-  const { auth, profile } = config;
+function AuthProvider({ validator, children, ...props }) {
   const { data: session } = useSession({
-    required: !profile.allowGuest && auth.hasAuth && !profile.allowGuest,
+    required: validator,
   });
   const hasUser = !!session?.user;
-  if (hasUser || !auth.hasAuth || profile.allowGuest) {
-    return  React.cloneElement(children, {session, ...props })
+  if (hasUser || !validator) {
+    return React.cloneElement(children, { session, ...props });
   }
-  return null;
 }

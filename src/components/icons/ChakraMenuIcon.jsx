@@ -1,5 +1,5 @@
 /**
- * Componente da composição do Logotipo.
+ * Componente da composiÃ§Ã£o do Logotipo.
  *  @module Logo
  */
 
@@ -10,13 +10,12 @@ import { Icon, useColorModeValue } from "@chakra-ui/react";
  * Monta o Componente de Logo.
  * @method Logo
  * @memberof module:Logo
- * @param {Object} props propriedades do arquivo que compõe o logo.
+ * @param {Object} props propriedades do arquivo que compÃµe o logo.
  * @returns {Component} componente que monta o logo.
  */
 
 export default function ChakraMenuIcon({
   icon,
-  opacity,
   size,
   invertHoverColor,
   ...props
@@ -31,6 +30,7 @@ export default function ChakraMenuIcon({
       as={icon}
       _hover={{
         color: invertHoverColor && hoverColorInverted,
+        //cursor: "help",
       }}
       sx={{
         opacity: icon ? "unset" : 0,

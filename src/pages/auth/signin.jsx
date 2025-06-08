@@ -148,6 +148,7 @@ export default function Signin({ config, csrfToken, ...pageProps }) {
         position={"absolute"}
         right={"0"}
         w="16"
+        mt={3}
         ml="auto"
         h="auto"
         flexDir={"row"}
@@ -219,7 +220,7 @@ export default function Signin({ config, csrfToken, ...pageProps }) {
                 {config.meta.title}
               </Heading>
               <Heading as={"h5"} pb="2" size={"sm"}>
-                Faça o Login para continuar
+                Faça o login para continuar
               </Heading>
               <Flex
                 flexDir={"column"}
@@ -309,7 +310,7 @@ export default function Signin({ config, csrfToken, ...pageProps }) {
               }}
             >
               <Heading as={"h2"} size={"lg"} pb={["20", "20", "20", "20"]}>
-                Recuperação de Credenciais
+                Recuperação de credenciais
               </Heading>
               <Heading as={"h5"} pb="8" size={"md"}>
                 Digite o email vinculado ao seu perfil
@@ -337,7 +338,10 @@ export default function Signin({ config, csrfToken, ...pageProps }) {
                 />
                 <Heading as={"h5"} alignSelf={"flex-start"} fontSize={"10"}>
                   Voltar para o{" "}
-                  <Hyperlink onClick={() => setRecover(!recover)}>
+                  <Hyperlink
+                    color={"white"}
+                    onClick={() => setRecover(!recover)}
+                  >
                     Login
                   </Hyperlink>
                 </Heading>
@@ -434,8 +438,9 @@ export default function Signin({ config, csrfToken, ...pageProps }) {
                   </Heading>
                   <Heading as={"h5"} alignSelf={"flex-start"} fontSize={"10"}>
                     Já possui cadastro? Voltar para o{" "}
-                    <Hyperlink onClick={() => setRegister(!register)} />
-                    Login
+                    <Hyperlink onClick={() => setRegister(!register)}>
+                      Login
+                    </Hyperlink>
                   </Heading>
                 </VStack>
               </Flex>

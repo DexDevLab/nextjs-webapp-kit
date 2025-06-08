@@ -91,7 +91,7 @@ export default function DesktopNavbar({ config, session, children, ...props }) {
         </Flex>
         {/* <Spacer /> */}
         <Flex gap={4} ml={"auto"} height={"fit-content"} my="auto">
-          <Searchbar config={config} />
+          {config.ux.useSearchBar && <Searchbar config={config} />}
           <ColorModeSwitch small />
         </Flex>
         {config.profile.enableProfile ? (

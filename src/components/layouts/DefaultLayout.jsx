@@ -68,10 +68,15 @@ export default function DefaultLayout({
       <CSSReset />
       {ux.enablePageTransitions ? (
         <CustomAnimatedPresence>
-          {React.cloneElement(children, { config, session, ...props })}
+          {React.cloneElement(children, {
+            config,
+            session,
+            lockScroll,
+            ...props,
+          })}
         </CustomAnimatedPresence>
       ) : (
-        React.cloneElement(children, { config, session, ...props })
+        React.cloneElement(children, { config, session, lockScroll, ...props })
       )}
     </>
   );

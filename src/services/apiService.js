@@ -8,5 +8,5 @@ import axiosClient from "axios";
  */
 export const axiosAPI = axiosClient.create({
   baseURL: "/",
-  timeout: 30000,
+  timeout: 10000,
 });

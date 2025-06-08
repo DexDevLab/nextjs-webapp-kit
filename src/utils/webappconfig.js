@@ -25,8 +25,8 @@ export const config = {
     // PODE SER UTILIZADA UMA ARRAY DE STRINGS.
     // EX.: authenticatedRoutes: ['search', 'user']
     // UTILIZAR WILDCARD (*) AFETA AS ROTAS SUBSEQUENTES.
-    // EX.: authenticatedRoutes: ["api/*"] (DESATIVA A ROTA API E TODAS OS SUBDIRETÓRIOS)
-    authenticatedRoutes: [""],
+    // EX.: authenticatedRoutes: ["api/*"] (DESATIVA A ROTA API E TODOS OS SUBDIRETÓRIOS)
+    authenticatedRoutes: ["search"],
   },
   // AJUSTES DE COMPORTAMENTO DE PERFIL DE USUÁRIO
   profile: {
@@ -57,6 +57,7 @@ export const config = {
       // OPTA POR UTILIZAR ÍCONES NOS RÓTULOS DOS MENUS NA NAVBAR
       useIconsForNavbarMenu: true,
     },
+    useSearchBar: true,
   },
   // AJUSTES DE TEMAS
   theming: {

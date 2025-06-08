@@ -56,29 +56,35 @@ export default function SearchbarResultBox({
                 }}
                 onClick={() => resultSelectFn(result)}
               >
-                <Flex pb={3} justifyContent={"flex-start"}>
+                <Flex
+                  pb={result.username && result.email ? 3 : undefined}
+                  py={!result.username && !result.email ? 2 : undefined}
+                  justifyContent={"flex-start"}
+                >
                   <Heading as={"h6"} mx={"auto"} fontSize={"md"}>
                     {result.name}
                   </Heading>
                 </Flex>
-                <Flex flexDirection={"column"} gap={2}>
-                  <Heading
-                    px={1}
-                    as={"h6"}
-                    fontWeight={"normal"}
-                    fontSize={"sm"}
-                  >
-                    Username: {result.username}
-                  </Heading>
-                  <Heading
-                    px={1}
-                    as={"h6"}
-                    fontWeight={"normal"}
-                    fontSize={"sm"}
-                  >
-                    Email: {result.email}
-                  </Heading>
-                </Flex>
+                {result.username && result.email && (
+                  <Flex flexDirection={"column"} gap={2}>
+                    <Heading
+                      px={1}
+                      as={"h6"}
+                      fontWeight={"normal"}
+                      fontSize={"sm"}
+                    >
+                      Username: {result.username}
+                    </Heading>
+                    <Heading
+                      px={1}
+                      as={"h6"}
+                      fontWeight={"normal"}
+                      fontSize={"sm"}
+                    >
+                      Email: {result.email}
+                    </Heading>
+                  </Flex>
+                )}
               </Flex>
               {idx + 1 !== searchResults.length && (
                 <Divider my={2} borderColor={dividerBorderColor} />

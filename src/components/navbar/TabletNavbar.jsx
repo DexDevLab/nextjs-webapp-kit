@@ -48,6 +48,7 @@ export default function TabletNavbar({ config, session, children, ...props }) {
           justifyContent={"center"}
           height={"fit-content"}
           m={"auto"}
+          width={!config.ux.useSearchBar && "100%"}
         >
           <NavigationOptions config={config} navigation={"tablet"} />
         </Flex>
@@ -62,7 +63,7 @@ export default function TabletNavbar({ config, session, children, ...props }) {
           gap={3}
         >
           <Flex gap={4} my={"auto"}>
-            <Searchbar config={config} />
+            {config.ux.useSearchBar && <Searchbar config={config} />}
             <ColorModeSwitch small />
           </Flex>
           {config.profile.enableProfile ? (
@@ -88,7 +89,11 @@ export default function TabletNavbar({ config, session, children, ...props }) {
                 variant="link"
                 size={"sm"}
                 onClick={() => {
-                  session?.user.name ? signOut() : router.push("/auth/signin");
+                  session?.user.name
+                    ? signOut({ redirect: false }).then(() => {
+                        router.push("/auth/signin");
+                      })
+                    : router.push("/auth/signin");
                 }}
               >
                 {session?.user.name ? "Sair" : "Login"}

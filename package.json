@@ -1,7 +1,7 @@
 {
   "name": "nextjs-webapp-kit",
   "description": "Kit básico de uma aplicação web ajustável e configurável para atender preferências específicas",
-  "version": "v0.0.2-231016",
+  "version": "v0.0.3-250608",
   "private": true,
   "scripts": {
     "dev": "next dev",

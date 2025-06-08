@@ -54,8 +54,9 @@ export function InputBox({
   label,
   type,
   placeholder,
-  w = "xxs",
+  w = "xs",
   h,
+  mx,
   required = true,
   pattern,
   validate,
@@ -108,7 +109,9 @@ export function InputBox({
   }, [errors, id, errors[id]]);
 
   return (
-    <Box px={0.5} py={3} w={w} h={h} mx={"auto"}>
+    <Box px={0.5} py={3} 
+    w={w}
+    h={h} mx={mx}>
       <FormControl id={id} isInvalid={errors[id]}>
         <motion.div key="formLabel" layout>
           <Flex
